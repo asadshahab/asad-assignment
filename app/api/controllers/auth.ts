@@ -18,7 +18,7 @@ export default class UserController {
             res.status(201).json({success: true, data: user});
            
         } catch (error:any) {
-           res.status(400).json({message: error.message})
+           res.status(400).json({success:false,message: error.message})
         }
     }
 
@@ -45,10 +45,9 @@ export default class UserController {
     }
 
 
-    // get user
+    // get user loginUser
     static async getUser(req: any, res: Response, next: NextFunction) {
         try {
-            console.log("in get user",req.user);
             const userId=req.user;
             const user = await User.findOne({_id:userId});
             if(!user) {

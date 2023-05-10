@@ -30,7 +30,7 @@ class UserController {
                 res.status(201).json({ success: true, data: user });
             }
             catch (error) {
-                res.status(400).json({ message: error.message });
+                res.status(400).json({ success: false, message: error.message });
             }
         });
     }
@@ -58,11 +58,10 @@ class UserController {
             }
         });
     }
-    // get user
+    // get user loginUser
     static getUser(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                console.log("in get user", req.user);
                 const userId = req.user;
                 const user = yield User_1.default.findOne({ _id: userId });
                 if (!user) {
